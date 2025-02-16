@@ -10,10 +10,10 @@ return (
         <h2 className="text-9xl font-bold mb-20 ml-64">TRADE</h2>
 
         <p className="font-semibold text-3xl max-w-2xl ml-32 mb-8">
-            How is CAM fair trade? Well, at CAM we work directly with African artisans, ensuring they're paid fairly and work in safe, supportive environments.
+            How is CAM fair trade? Well, at CAM we work directly with African artisans, ensuring they&apos;re paid fairly and work in safe, supportive environments.
         </p>
         <p className="font-semibold text-3xl max-w-3xl ml-32 text-red-700">
-            When you choose CAM, you're supporting African artisans and strengthening their communities.
+            When you choose CAM, you&apos;re supporting African artisans and strengthening their communities.        
         </p>
         <button className="bg-green-800 text-white py-3 px-6 rounded-3xl text-lg hover:bg-green-600 a mt-16  active:bg-green-950 ml-32">
         Sign Up to Support

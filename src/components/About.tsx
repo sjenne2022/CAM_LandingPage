@@ -25,8 +25,7 @@ return (
         {/* Right Side - Text */}
         <div className="w-2/3">
         <p className="text-3xl font-semibold max-w-4xl mb-10">
-        Welcome to CAM, your gateway to discovering exceptional products made in Africa. Imagine browsing a collection where every item, from stylish wearables and contemporary fashion to practical tools and unique home accents, is crafted with care by skilled African artisans.
-        </p>
+        Welcome to CAM—the first-of-its-kind marketplace bringing the soul of Africa to the world. Discover a curated collection where every piece, from stylish wearables and contemporary fashion to artisanal tools and unique home accents, is a testament to Africa’s rich heritage and masterful craftsmanship.        </p>
         <p className="text-3xl font-semibold max-w-4xl text-green-800">
         With each purchase, you’re not only enjoying high-quality craftsmanship but also supporting fair trade practices that empower local communities. Explore our curated selection and experience the authentic creativity and passion that goes into every piece.
         </p>
