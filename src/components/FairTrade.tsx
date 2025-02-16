@@ -16,7 +16,7 @@ return (
             When you choose CAM, you&apos;re supporting African artisans and strengthening their communities.        
         </p>
         <button className="bg-green-800 text-white py-3 px-6 rounded-3xl text-lg hover:bg-green-600 a mt-16  active:bg-green-950 ml-32">
-        Sign Up to Support
+        Get the latest updates now
         </button>
         </div>
 
