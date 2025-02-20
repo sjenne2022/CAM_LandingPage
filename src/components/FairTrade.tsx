@@ -15,7 +15,7 @@ return (
         <p className="font-semibold sm:ml-14 text-left text-xl sm:text-3xl max-w-3xl mx-auto sm:mx-0 text-red-700">
             When you choose CAM, you&apos;re supporting African artisans and strengthening their communities.
         </p>
-        <button className="bg-green-800 sm:ml-14 text-white py-3 px-6 rounded-3xl text-lg hover:bg-green-600 active:bg-green-950 mt-8 sm:mt-16">
+        <button className="bg-green-800 sm:ml-14 text-white py-3 sm:py-4 sm:px-7 sm:rounded-full px-6 rounded-3xl text-lg sm:text-xl hover:bg-green-600 active:bg-green-950 mt-8 sm:mt-16">
             Get the latest updates now
         </button>
         </div>
