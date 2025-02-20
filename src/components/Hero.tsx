@@ -31,7 +31,7 @@ return (
         >
         each product has a story to tell.
         </p>
-        <button className="bg-red-800 text-white py-3 px-6 rounded-3xl text-xl sm:text-lg hover:bg-red-600 active:bg-red-950">
+        <button className="bg-red-800 text-white py-3 px-6 rounded-3xl text-xl sm:text-xl hover:bg-red-600 active:bg-red-950">
         Sign Up for Early Access
         </button>
     </div>
