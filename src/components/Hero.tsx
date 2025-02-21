@@ -8,6 +8,7 @@ export default function Hero() {
 const heroRef = useRef(null);
 const textRef = useRef(null);
 const imageRef = useRef(null);
+const cursorRef = useRef<HTMLDivElement>(null);
 
 useEffect(() => {
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
@@ -20,8 +21,17 @@ useEffect(() => {
 return (
     <section
     ref={heroRef}
-    className="min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-white text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12"
+    className="relative min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-white text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12"
     >
+    {/* Custom Cursor Button */}
+    <div
+        ref={cursorRef}
+        className="pointer-events-none fixed flex items-center justify-center bg-red-800 active:bg-red-600 text-white font-bold text-sm sm:text-lg px-4 py-2 rounded-lg shadow-lg z-[9999]"
+        style={{ transform: "translate(-50%, -50%)", display: "none" }}
+    >
+        Get Early Access Now
+    </div>
+
     {/* Left Side - Text Content */}
     <div ref={textRef} className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-12">
         <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left">
@@ -42,8 +52,30 @@ return (
         </button>
     </div>
 
-    {/* Right Side - Image */}
-    <div ref={imageRef} className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0">
+    {/* Right Side - Clickable Image CTA */}
+    <a
+        href="#"
+        ref={imageRef}
+        className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0"
+        onMouseMove={(e) => {
+            if (cursorRef.current) {
+            cursorRef.current.style.left = `${e.clientX}px`;
+            cursorRef.current.style.top = `${e.clientY}px`;
+            }
+        }}
+        onMouseEnter={() => {
+            if (cursorRef.current) cursorRef.current.style.display = "flex";
+        }}
+        onMouseLeave={() => {
+            if (cursorRef.current) cursorRef.current.style.display = "none";
+        }}
+        onMouseDown={() => {
+            if (cursorRef.current) cursorRef.current.classList.replace('bg-red-800', 'bg-red-600');
+        }}
+        onMouseUp={() => {
+            if (cursorRef.current) cursorRef.current.classList.replace('bg-red-600', 'bg-red-800');
+        }}
+    >
         <Image
         src="/AfricanStyle.png"
         alt="Authentic African Goods"
@@ -51,7 +83,7 @@ return (
         height={1400}
         className="rounded-lg w-full sm:w-auto sm:max-w-lg lg:max-w-3xl h-auto object-contain"
         />
-    </div>
+    </a>
     </section>
 );
 }
