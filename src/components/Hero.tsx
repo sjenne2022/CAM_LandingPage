@@ -6,9 +6,15 @@ import Image from "next/image";
 
 export default function Hero() {
 const heroRef = useRef(null);
+const textRef = useRef(null);
+const imageRef = useRef(null);
 
 useEffect(() => {
-    gsap.fromTo(heroRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1 });
+    const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
+
+    tl.fromTo(heroRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1 })
+    .from(textRef.current, { opacity: 0, y: 20 }, "-=0.5")
+    .from(imageRef.current, { opacity: 0, x: 50 }, "-=0.5");
 }, []);
 
 return (
@@ -17,7 +23,7 @@ return (
     className="min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-white text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12"
     >
     {/* Left Side - Text Content */}
-    <div className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-12">
+    <div ref={textRef} className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-12">
         <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left">
         Discover authentic African goods that spark conversation
         </h1>
@@ -37,7 +43,7 @@ return (
     </div>
 
     {/* Right Side - Image */}
-    <div className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0">
+    <div ref={imageRef} className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0">
         <Image
         src="/AfricanStyle.png"
         alt="Authentic African Goods"
