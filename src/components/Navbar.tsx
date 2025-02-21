@@ -21,9 +21,9 @@ return (
 
     {/* Desktop Menu */}
     <ul className="hidden sm:flex space-x-6 text-black text-xl">
-        <li><a href="#about" className="hover:text-gray-600">About</a></li>
-        <li><a href="#fairtrade" className="hover:text-gray-600">Fair Trade</a></li>
-        <li><a href="#contact" className="hover:text-gray-600">Contact</a></li>
+        <li><a href="#about" className="hover:text-red-600">About</a></li>
+        <li><a href="#fairtrade" className="hover:text-red-600">Fair Trade</a></li>
+        <li><a href="#contact" className="hover:text-red-600">Contact</a></li>
     </ul>
 
     {/* Mobile Menu (Opens when menuOpen is true) */}
