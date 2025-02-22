@@ -9,6 +9,10 @@ const heroRef = useRef(null);
 const textRef = useRef(null);
 const imageRef = useRef(null);
 const cursorRef = useRef<HTMLDivElement>(null);
+const wordRefs = useRef<Array<HTMLSpanElement | null>>([]);
+
+const headingText = "Discover authentic African goods that spark conversation";
+const words = headingText.split(" ");
 
 useEffect(() => {
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
@@ -16,6 +20,16 @@ useEffect(() => {
     tl.fromTo(heroRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0 })
     .from(textRef.current, { opacity: 0, y: 20 }, "-=0.5")
     .from(imageRef.current, { opacity: 0, x: 50 }, "-=0.5");
+
+    // Animate each word individually
+    gsap.from(wordRefs.current, {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: "back.out(1.7)",
+    stagger: 0.3,
+    delay: 0.5, // Adjust if needed
+    });
 }, []);
 
 return (
@@ -38,8 +52,17 @@ return (
         className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-12"
     >
         <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left">
-        Discover authentic African goods that spark conversation
+        {words.map((word, index) => (
+            <span
+            key={index}
+            ref={(el) => {wordRefs.current[index] = el}}
+            className="inline-block mr-6"
+            >
+            {word}
+            </span>
+        ))}
         </h1>
+
         <p
         className="text-xl sm:text-2xl font-semibold relative pb-2 max-w-[400px] sm:max-w-[500px] text-center sm:text-left"
         style={{
@@ -61,27 +84,27 @@ return (
         ref={imageRef}
         className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0"
         onMouseMove={(e) => {
-            if (cursorRef.current) {
+        if (cursorRef.current) {
             gsap.to(cursorRef.current, {
-                left: e.clientX,
-                top: e.clientY,
-                duration: 0.6,
-                ease: "power3.out",
+            left: e.clientX,
+            top: e.clientY,
+            duration: 0.6,
+            ease: "power3.out",
             });
-            }
+        }
         }}
         onMouseEnter={() => {
-            if (cursorRef.current) cursorRef.current.style.display = "flex";
+        if (cursorRef.current) cursorRef.current.style.display = "flex";
         }}
         onMouseLeave={() => {
-            if (cursorRef.current) cursorRef.current.style.display = "none";
+        if (cursorRef.current) cursorRef.current.style.display = "none";
         }}
         onMouseDown={() => {
-            if (cursorRef.current)
+        if (cursorRef.current)
             cursorRef.current.classList.replace("bg-red-800", "bg-red-600");
         }}
         onMouseUp={() => {
-            if (cursorRef.current)
+        if (cursorRef.current)
             cursorRef.current.classList.replace("bg-red-600", "bg-red-800");
         }}
     >
