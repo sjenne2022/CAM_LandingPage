@@ -27,7 +27,7 @@ useEffect(() => {
 return (
     <section className="py-12 sm:py-32 px-6 text-center bg-white">
     <h2 className="text-6xl sm:text-9xl font-bold mb-7 text-black">African Designed</h2>
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center">
         {/* Custom Cursor Button */}
         <div
         ref={cursorRef}
@@ -37,18 +37,18 @@ return (
         Support African Artisans Now
         </div>
 
-        <video
-        ref={videoRef}
-        className="w-full max-w-[90%] sm:max-w-8xl aspect-video rounded-lg video-element cursor-none"
-        src="/AfricanVideo.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
+        {/* Video wrapped in a link (fully centered) */}
+        <a
+        href="#"
+        className="flex justify-center items-center"
         onMouseMove={(e) => {
             if (cursorRef.current) {
-            cursorRef.current.style.left = `${e.clientX}px`;
-            cursorRef.current.style.top = `${e.clientY}px`;
+            gsap.to(cursorRef.current, {
+                left: e.clientX,
+                top: e.clientY,
+                duration: 0.6,
+                ease: "power3.out",
+            });
             }
         }}
         onMouseEnter={() => {
@@ -58,12 +58,24 @@ return (
             if (cursorRef.current) cursorRef.current.style.display = "none";
         }}
         onMouseDown={() => {
-            if (cursorRef.current) cursorRef.current.classList.replace('bg-green-800', 'bg-green-600');
+            if (cursorRef.current)
+            cursorRef.current.classList.replace('bg-green-800', 'bg-green-600');
         }}
         onMouseUp={() => {
-            if (cursorRef.current) cursorRef.current.classList.replace('bg-green-600', 'bg-green-800');
+            if (cursorRef.current)
+            cursorRef.current.classList.replace('bg-green-600', 'bg-green-800');
         }}
+        >
+        <video
+            ref={videoRef}
+            className="w-full max-w-[90%] sm:max-w-8xl aspect-video rounded-lg video-element"
+            src="/AfricanVideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
         />
+        </a>
     </div>
     </section>
 );
