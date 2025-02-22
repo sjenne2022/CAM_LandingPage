@@ -13,7 +13,7 @@ const cursorRef = useRef<HTMLDivElement>(null);
 useEffect(() => {
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
 
-    tl.fromTo(heroRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1 })
+    tl.fromTo(heroRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0 })
     .from(textRef.current, { opacity: 0, y: 20 }, "-=0.5")
     .from(imageRef.current, { opacity: 0, x: 50 }, "-=0.5");
 }, []);
@@ -33,7 +33,10 @@ return (
     </div>
 
     {/* Left Side - Text Content */}
-    <div ref={textRef} className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-12">
+    <div
+        ref={textRef}
+        className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-12"
+    >
         <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left">
         Discover authentic African goods that spark conversation
         </h1>
@@ -59,8 +62,12 @@ return (
         className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0"
         onMouseMove={(e) => {
             if (cursorRef.current) {
-            cursorRef.current.style.left = `${e.clientX}px`;
-            cursorRef.current.style.top = `${e.clientY}px`;
+            gsap.to(cursorRef.current, {
+                left: e.clientX,
+                top: e.clientY,
+                duration: 0.6,
+                ease: "power3.out",
+            });
             }
         }}
         onMouseEnter={() => {
@@ -70,10 +77,12 @@ return (
             if (cursorRef.current) cursorRef.current.style.display = "none";
         }}
         onMouseDown={() => {
-            if (cursorRef.current) cursorRef.current.classList.replace('bg-red-800', 'bg-red-600');
+            if (cursorRef.current)
+            cursorRef.current.classList.replace("bg-red-800", "bg-red-600");
         }}
         onMouseUp={() => {
-            if (cursorRef.current) cursorRef.current.classList.replace('bg-red-600', 'bg-red-800');
+            if (cursorRef.current)
+            cursorRef.current.classList.replace("bg-red-600", "bg-red-800");
         }}
     >
         <Image
