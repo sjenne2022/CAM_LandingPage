@@ -73,7 +73,7 @@ return (
         <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left">
         {words.map((word, index) => (
             <span
-            key={index}
+            key={`${word}-${index}`}
             ref={(el) => {
                 wordRefs.current[index] = el;
             }}
