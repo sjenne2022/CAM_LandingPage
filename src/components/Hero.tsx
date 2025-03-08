@@ -42,7 +42,7 @@ const handleShare = async () => {
             });
             console.log("Content shared successfully!");
         } catch (error) {
-            if (error.name !== "AbortError") {
+            if (error instanceof Error && error.name !== "AbortError") {
                 console.error("Error sharing:", error);
             }
         }
