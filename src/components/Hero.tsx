@@ -71,10 +71,10 @@ return (
             "linear-gradient(to right, green 0%, green 20%, #8B0000 20%, #8B0000 40%, green 40%, green 60%, #8B0000 60%, #8B0000 80%, green 80%, green 100%) 1",
         }}
         >
-        each product has a story to tell.
+        Each product has a story to tell.
         </p>
         <button className="bg-red-800 text-white py-3 px-6 rounded-3xl text-xl sm:text-xl hover:bg-red-600 active:bg-red-950">
-        Sign Up for Early Access
+        Sign Up for Updates
         </button>
     </div>
 

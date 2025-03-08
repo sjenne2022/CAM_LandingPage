@@ -34,9 +34,9 @@ return (
         ref={(el) => {pillarsRef.current[0] = el}}
         >
         <h3 className="text-6xl sm:text-7xl font-bold">💰</h3>
-        <h4 className="text-2xl font-semibold mt-4">Fair Wages & Ethical Sourcing</h4>
+        <h4 className="text-2xl font-semibold mt-4">Authenticity</h4>
         <p className="text-lg mt-2 max-w-xs">
-            Committed to fair trade partnerships that uplift communities.
+            Products straight from the motherland
         </p>
         </div>
 
@@ -46,9 +46,9 @@ return (
         ref={(el) => {pillarsRef.current[1] = el}}
         >
         <h3 className="text-6xl sm:text-7xl font-bold">🌍</h3>
-        <h4 className="text-2xl font-semibold mt-4">Sustainable & Eco-Friendly</h4>
+        <h4 className="text-2xl font-semibold mt-4">Economic Empowerment</h4>
         <p className="text-lg mt-2 max-w-xs">
-            Prioritizing sustainable materials and reducing waste.
+            Market expansion for African sellers
         </p>
         </div>
 
@@ -58,9 +58,9 @@ return (
         ref={(el) => {pillarsRef.current[2] = el}}
         >
         <h3 className="text-6xl sm:text-7xl font-bold">🤝</h3>
-        <h4 className="text-2xl font-semibold mt-4">Transparency & Community Impact</h4>
+        <h4 className="text-2xl font-semibold mt-4">Exclusivity</h4>
         <p className="text-lg mt-2 max-w-xs">
-            Bringing openness to every purchase to empower artisans.
+            Products only made in Africa
         </p>
         </div>
 
