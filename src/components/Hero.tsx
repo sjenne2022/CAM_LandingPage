@@ -55,7 +55,7 @@ const handleShare = async () => {
 return (
     <section
     ref={heroRef}
-    className="relative min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-white text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12"
+    className="relative min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-white text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12 border-b-4 border-black border-opacity-10"
     >
     <div
         ref={cursorRef}
@@ -70,14 +70,14 @@ return (
         ref={textRef}
         className="w-full sm:w-2/3 flex flex-col justify-center items-center sm:items-start gap-6"
     >
-        <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left">
+        <h1 className="text-5xl sm:text-8xl font-bold w-full max-w-none leading-tight text-center sm:text-left flex flex-wrap justify-center sm:justify-start gap-3">
         {words.map((word, index) => (
             <span
             key={`${word}-${index}`}
             ref={(el) => {
                 wordRefs.current[index] = el;
             }}
-            className="inline-block mr-6"
+            className="inline-block"
             >
             {word}
             </span>
@@ -155,7 +155,7 @@ return (
         alt="Authentic African Goods"
         width={1400}
         height={1400}
-        className="rounded-lg w-full sm:w-auto sm:max-w-lg lg:max-w-3xl h-auto object-contain"
+        className="rounded-lg w-full sm:w-auto sm:max-w-lg lg:max-w-3xl h-auto object-contain mb-[-48px]"
         />
     </a>
     </section>
