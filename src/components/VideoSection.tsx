@@ -25,7 +25,7 @@ useEffect(() => {
 }, []);
 
 return (
-    <section className="py-12 sm:py-32 px-6 text-center bg-white">
+    <section className="py-12 sm:py-32 px-6 text-center bg-white border-b-4 border-black border-opacity-10">
     <h2 className="text-6xl sm:text-9xl font-bold mb-7 text-black">African Designed</h2>
     <div className="flex justify-center items-center">
         {/* Custom Cursor Button */}
