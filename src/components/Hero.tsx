@@ -10,7 +10,6 @@ const heroRef = useRef(null);
 const textRef = useRef(null);
 const imageRef = useRef(null);
 const cursorRef = useRef<HTMLDivElement>(null);
-const [isModalOpen, setIsModalOpen] = useState(false);
 const wordRefs = useRef<Array<HTMLSpanElement | null>>([]);
 const [modalState, setModalState] = useState<'closed' | 'opening' | 'visible' | 'closing'>('closed');
 
