@@ -30,7 +30,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElemen
 const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 🚀 TODO: Connect this to your API or Mailchimp handler
+    // 🚀 todo: Connect this to your API or Mailchimp handler
     console.log('Form submitted:', formData);
     onClose();
 };
@@ -95,10 +95,11 @@ return createPortal(
 
         <div className="space-y-4">
             <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor='q1' className="block text-sm font-medium text-gray-700">
                 1. Have you ever tried to buy African products online while living in the US or Europe? What was that like?
             </label>
             <textarea
+                id='q1'
                 name="q1"
                 rows={3}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -108,10 +109,11 @@ return createPortal(
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor='q2' className="block text-sm font-medium text-gray-700">
                 2. What kinds of African products would you be excited to buy online? How often do you think you’d buy them?
             </label>
             <textarea
+                id='q2'
                 name="q2"
                 rows={3}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -121,10 +123,11 @@ return createPortal(
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor='q3' className="block text-sm font-medium text-gray-700">
                 3. Where do you usually go to find African products now? Is there anything missing or frustrating about those options?
             </label>
             <textarea
+                id='q3'
                 name="q3"
                 rows={3}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -134,10 +137,11 @@ return createPortal(
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor='q4' className="block text-sm font-medium text-gray-700">
                 4. Why are African products important or interesting to you?
             </label>
             <textarea
+                id='q4'
                 name="q4"
                 rows={3}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -147,10 +151,11 @@ return createPortal(
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor='q5' className="block text-sm font-medium text-gray-700">
                 5. What would make you trust a new online store selling African products?
             </label>
             <textarea
+                id='q5'
                 name="q5"
                 rows={3}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -160,10 +165,11 @@ return createPortal(
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor='q6' className="block text-sm font-medium text-gray-700">
                 6. Is there anything that would stop you from buying African products online?
             </label>
             <textarea
+                id='q6'
                 name="q6"
                 rows={3}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
