@@ -30,7 +30,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElemen
 const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 🚀 todo: Connect this to your API or Mailchimp handler
+    // This is where we'll send the form data to Mailchimp or a backend
     console.log('Form submitted:', formData);
     onClose();
 };
