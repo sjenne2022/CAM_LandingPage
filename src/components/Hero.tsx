@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
+import SubscribeModal from "./SubscribeModal";
 
 export default function Hero() {
 const heroRef = useRef(null);
 const textRef = useRef(null);
 const imageRef = useRef(null);
 const cursorRef = useRef<HTMLDivElement>(null);
+const [isModalOpen, setIsModalOpen] = useState(false);
 const wordRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
 const headingText =
@@ -98,7 +100,10 @@ return (
     {/* Buttons - Flex Container for Side-by-Side Layout */}
     <div className="flex flex-wrap items-center justify-center gap-4 mt-3">
         {/* Sign Up Button */}
-        <button className="bg-red-800 text-white py-3 px-6 rounded-3xl text-lg sm:text-xl hover:bg-red-600 active:bg-red-950">
+        <button 
+        className="bg-red-800 text-white py-3 px-6 rounded-3xl text-lg sm:text-xl hover:bg-red-600 active:bg-red-950"
+        onClick={() => setIsModalOpen(true)}
+        >
             Sign Up for Updates
         </button>
 
@@ -121,8 +126,9 @@ return (
     </div>
 
     {/* Right Side - Clickable Image CTA */}
-    <a
-        href="#"
+    <button
+        type="button"
+        onClick={() => setIsModalOpen(true)}
         ref={imageRef}
         className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0"
         onMouseMove={(e) => {
@@ -157,7 +163,11 @@ return (
         height={1400}
         className="rounded-lg w-full sm:w-auto sm:max-w-lg lg:max-w-3xl h-auto object-contain mb-[-48px]"
         />
-    </a>
+    </button>
+    <SubscribeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+    />
     </section>
 );
 }
