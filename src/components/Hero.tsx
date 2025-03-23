@@ -12,6 +12,8 @@ const imageRef = useRef(null);
 const cursorRef = useRef<HTMLDivElement>(null);
 const [isModalOpen, setIsModalOpen] = useState(false);
 const wordRefs = useRef<Array<HTMLSpanElement | null>>([]);
+const [modalState, setModalState] = useState<'closed' | 'opening' | 'visible' | 'closing'>('closed');
+
 
 const headingText =
     "Discover authentic African goods that spark conversation";
@@ -102,7 +104,7 @@ return (
         {/* Sign Up Button */}
         <button 
         className="bg-red-800 text-white py-3 px-6 rounded-3xl text-lg sm:text-xl hover:bg-red-600 active:bg-red-950"
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => setModalState('opening')}
         >
             Sign Up for Updates
         </button>
@@ -128,7 +130,7 @@ return (
     {/* Right Side - Clickable Image CTA */}
     <button
         type="button"
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => setModalState('opening')}
         ref={imageRef}
         className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0"
         onMouseMove={(e) => {
@@ -165,8 +167,8 @@ return (
         />
     </button>
     <SubscribeModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        modalState={modalState}
+        setModalState={setModalState}
     />
     </section>
 );
