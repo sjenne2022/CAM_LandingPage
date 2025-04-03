@@ -134,8 +134,8 @@ return (
         className="w-full sm:w-[45%] lg:w-1/2 flex justify-center mt-8 sm:mt-0"
         onMouseMove={(e) => {
         if (cursorRef.current) {
-            import("gsap").then((gsap) => {
-            gsap.gsap.to(cursorRef.current!, {
+            import("gsap").then(({gsap}) => {
+            gsap.to(cursorRef.current, {
                 left: e.clientX,
                 top: e.clientY,
                 duration: 0.6,
