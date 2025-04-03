@@ -4,24 +4,24 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { gsap } from 'gsap';
-
+import { submitToGoogleSheet } from './submitToGoogleSheets';
 
 interface SubscribeModalProps {
 modalState: 'closed' | 'opening' | 'visible' | 'closing';
 setModalState: (state: 'closed' | 'opening' | 'visible' | 'closing') => void;
 }
 
-type MultiChoiceKey = 'q2' | 'q4' | 'q6';
+type MultiChoiceKey = 'productInterests' | 'q4' | 'q6';
 
 type FormData = {
 email: string;
 q1: string;
-q2: string[];
+productInterests: string[];
 q3: string;
 q4: string[];
 q5: string;
 q6: string[];
-q2Other?: string;
+productInterestsOther?: string;
 q4Other?: string;
 q6Other?: string;
 };
@@ -39,12 +39,29 @@ return re.test(email);
 };
 
 const multipleChoiceOptions: Record<MultiChoiceKey, string[]> = {
-q2: ['Fashion', 'Art & Decor', 'Beauty Products', 'Food & Spices', 'Books', 'Music'],
+productInterests: [
+    'Traditional ingredients (e.g., fufu, garri, spices)',
+    'Snacks & treats (e.g., plantain chips, chin chin)',
+    'Beverages (e.g., hibiscus tea, palm wine, African coffee)',
+    'Clothing (e.g., dashikis, kaftans)',
+    'Fabrics (e.g., Ankara, Kente)',
+    'Accessories (e.g., jewelry, headwraps, sandals)',
+    'Skincare & haircare (e.g., shea butter, black soap)',
+    'Natural remedies (e.g., herbal teas, oils)',
+    'Fragrances & incense',
+    'Home decor (e.g., baskets, masks, pottery)',
+    'Art & crafts (e.g., paintings, sculptures)',
+    'Musical instruments (e.g., drums, kalimbas)',
+    'Literature (e.g., novels, folktales)',
+    'Music & films (e.g., CDs, Nollywood movies)',
+    'Spices & grains (e.g., pepper, moringa)',
+    'Natural resources (e.g., cocoa, coffee, cotton)',
+],
 q4: ['Cultural Connection', 'Curiosity', 'Uniqueness', 'Quality', 'Support Local Economies'],
 q6: ['Shipping Cost', 'Product Authenticity', 'Website Trust', 'Lack of Variety', 'Price'],
 };
 
-const formFieldKeys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const;
+const formFieldKeys = ['q1', 'productInterests', 'q3', 'q4', 'q5', 'q6'] as const;
 
 const translations: Record<LanguageCode, Record<string, string>> = {
 en: {
@@ -57,8 +74,8 @@ en: {
     emailPlaceholder: 'Your email address',
     textPlaceholder: 'Type your answer here...',
     otherPlaceholder: 'Please specify...',
-    q1: 'Have you ever tried to buy African products online while living in the US or Europe? What was that like?',
-    q2: 'What kinds of African products would you be excited to buy online? (Select all that apply)',
+    q1: 'Food and Drink?',
+    productInterests: 'What kinds of African products would you be excited to buy online? (Select all that apply)',
     q3: 'Where do you usually go to find African products now? Is there anything missing or frustrating about those options?',
     q4: 'Why are African products important or interesting to you? (Select all that apply)',
     q5: 'What would make you trust a new online store selling African products?',
@@ -79,12 +96,12 @@ const t = translations[language];
 const [formData, setFormData] = useState<FormData>({
     email: '',
     q1: '',
-    q2: [],
+    productInterests: [],
     q3: '',
     q4: [],
     q5: '',
     q6: [],
-    q2Other: '',
+    productInterestsOther: '',
     q4Other: '',
     q6Other: '',
 });
@@ -140,7 +157,7 @@ const validateEmailField = () => {
     }
 };
 
-const getOtherValue = (key: keyof Pick<FormData, 'q2' | 'q4' | 'q6'>): string => {
+const getOtherValue = (key: keyof Pick<FormData, 'productInterests' | 'q4' | 'q6'>): string => {
     const otherKey = `${key}Other` as keyof FormData;
     return (formData[otherKey] as string) || '';
 };
@@ -156,7 +173,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     return;
     }
 
-    // Check multiple honeypot fields.
+    // Honeypot check
     const orgReference = (formElement.elements.namedItem('org_reference') as HTMLInputElement)?.value;
     const hpExtra = (formElement.elements.namedItem('hp_extra') as HTMLInputElement)?.value;
 
@@ -166,7 +183,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     return;
     }
 
-    // Validate email before proceeding.
+    // Email validation
     if (!formData.email || !validateEmail(formData.email)) {
     validateEmailField();
     setIsSubmitting(false);
@@ -175,7 +192,8 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     setIsSubmitting(true);
 
-    const getFinalAnswer = (key: 'q2' | 'q4' | 'q6') => {
+    // Finalize multi-choice answers
+    const getFinalAnswer = (key: 'productInterests' | 'q4' | 'q6') => {
     const base = formData[key] || [];
     const other = formData[`${key}Other`] ?? '';
     return base.includes(t.other) && other ? [...base.filter((v) => v !== t.other), other] : base;
@@ -184,17 +202,28 @@ const handleSubmit = async (e: React.FormEvent) => {
     const submissionData = {
     email: sanitizeInput(formData.email),
     q1: sanitizeInput(formData.q1),
-    q2: getFinalAnswer('q2').map(sanitizeInput),
+    productInterests: getFinalAnswer('productInterests').map(sanitizeInput),
     q3: sanitizeInput(formData.q3),
     q4: getFinalAnswer('q4').map(sanitizeInput),
     q5: sanitizeInput(formData.q5),
     q6: getFinalAnswer('q6').map(sanitizeInput),
     };
 
-    await new Promise((res) => setTimeout(res, 1000));
-    console.log('Submitted data:', submissionData);
-    setIsSubmitting(false);
+    // Submit to Mailchimp
+    const result = await submitToGoogleSheet(submissionData);
+
+    if (result.success) {
+    console.log('Mailchimp submission succeeded:', submissionData);
     setShowThankYou(true);
+    } else {
+    console.error('Google sheets submission failed:', result.message);
+    setErrors((prev) => ({
+        ...prev,
+        email: result.message ?? 'Unable to subscribe at this time. Please try again later.',
+    }));
+    }
+
+    setIsSubmitting(false);
 };
 
 useEffect(() => {
