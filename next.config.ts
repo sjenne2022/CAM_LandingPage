@@ -3,14 +3,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // Add other config options here
+  // Add other config options here if needed
 };
 
-const createConfig = async () => {
-  const { default: withBundleAnalyzer } = await import('@next/bundle-analyzer');
-  return withBundleAnalyzer({
-    enabled: process.env.ANALYZE === 'true',
-  })(nextConfig);
-};
-
-export default createConfig;
+export default nextConfig;
