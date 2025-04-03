@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.sankamarketplace.com
+
+# Sitemaps
+Sitemap: https://www.sankamarketplace.com/sitemap.xml
