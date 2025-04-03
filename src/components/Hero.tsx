@@ -57,7 +57,7 @@ const handleShare = async () => {
 return (
     <section
     ref={heroRef}
-    className="relative min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-white text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12 border-b-4 border-black border-opacity-10"
+    className="relative min-h-screen w-full max-w-none flex flex-col sm:flex-row items-center bg-[#FAF4EF] text-left px-6 sm:px-16 text-black pt-24 sm:pt-0 pb-12 border-b-4 border-black border-opacity-10"
     >
     <div
         ref={cursorRef}

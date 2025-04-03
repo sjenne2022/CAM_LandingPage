@@ -25,7 +25,7 @@ useEffect(() => {
 }, []);
 
 return (
-    <section className="py-20 px-6 bg-white text-black  border-b-4 border-black border-opacity-10">
+    <section className="py-20 px-6 bg-[#FAF4EF] text-black  border-b-4 border-black border-opacity-10">
     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
         
         {/* Pillar 1 */}

@@ -55,7 +55,7 @@ useEffect(() => {
 return (
     <section
     id="fairtrade"
-    className="py-20 px-6 bg-white text-left text-black border-b-4 border-black border-opacity-10"
+    className="py-20 px-6 bg-[#FAF4EF] text-left text-black border-b-4 border-black border-opacity-10"
     >
     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
         {/* Left Side - Text Content */}

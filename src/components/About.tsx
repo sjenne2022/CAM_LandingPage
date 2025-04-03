@@ -53,7 +53,7 @@ useEffect(() => {
 }, []);
 
 return (
-    <section id="about" className="py-20 px-6 bg-white text-left text-black border-b-4 border-black border-opacity-10">
+    <section id="about" className="py-20 px-6 bg-[#FAF4EF] text-left text-black border-b-4 border-black border-opacity-10">
     {/* Heading Section */}
     <div className="text-center sm:text-left">
         <h2

@@ -18,7 +18,7 @@ const handleSmoothScroll = (
 };
 
 return (
-    <nav className="bg-white shadow-md py-4 px-6 fixed top-0 w-full flex justify-between items-center z-50">
+    <nav className="bg-[#FAF4EF] shadow-md py-4 px-6 fixed top-0 w-full flex justify-between items-center z-50">
     {/* Logo */}
     <Link href="/" className="flex items-center space-x-2">
         <Image
