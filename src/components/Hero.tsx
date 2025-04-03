@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
-import SubscribeModal from "./SubscribeModal";
+import dynamic from "next/dynamic";
+const SubscribeModal = dynamic(() => import("./SubscribeModal"), { ssr: false });
+
 
 export default function Hero() {
 const heroRef = useRef(null);
