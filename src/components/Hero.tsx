@@ -39,9 +39,8 @@ const handleShare = async () => {
     if (navigator.share) {
         try {
             await navigator.share({
-                title: "Discover African Goods",
-                text: "Check out these authentic African goods that spark conversation!",
-                url: window.location.href,
+                title: "SankaMarketplace | Discover African Goods",
+                text: "Check out SankaMarketplace — your destination for authentic African goods that spark conversation!"
             });
             console.log("Content shared successfully!");
         } catch (error) {

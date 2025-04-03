@@ -16,7 +16,7 @@ const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: s
 return (
     <nav className="bg-white shadow-md py-4 px-6 fixed top-0 w-full flex justify-between items-center z-50">
     {/* Logo */}
-    <h1 className="text-3xl font-bold text-black">CAM</h1>
+    <h1 className="text-3xl font-bold text-black">Sanka Marketplace</h1>
 
     {/* Hamburger Menu (Mobile) */}
     <button

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CAM - Bringing Africa to You",
-  description: "Discover authentic African craftsmanship and unique handmade products.",
+  title: "SankaMarketplace - Bringing Africa to You",
+  description: "Discover authentic African craftsmanship and unique handmade products at SankaMarketplace.",
 };
 
 export default function RootLayout({

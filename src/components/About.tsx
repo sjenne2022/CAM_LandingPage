@@ -23,7 +23,7 @@ useEffect(() => {
     x: -50,
     duration: 1,
     ease: "power2.out",
-    stagger: 0.2
+    stagger: 0.2,
     });
 
     // Image animation (fade-in + scale-up)
@@ -35,7 +35,7 @@ useEffect(() => {
     opacity: 0,
     scale: 0.9,
     duration: 1,
-    ease: "power2.out"
+    ease: "power2.out",
     });
 
     // Text paragraphs animation (fade-in + slide-up)
@@ -48,7 +48,7 @@ useEffect(() => {
     y: 30,
     duration: 1,
     ease: "power2.out",
-    stagger: 0.2
+    stagger: 0.2,
     });
 }, []);
 
@@ -58,13 +58,17 @@ return (
     <div className="text-center sm:text-left">
         <h2
         className="text-7xl sm:text-9xl font-bold sm:ml-14 ml-[-50px] about-heading"
-        ref={(el) => { headingRef.current[0] = el; }}
+        ref={(el) => {
+            headingRef.current[0] = el;
+        }}
         >
         What
         </h2>
         <h2
         className="text-7xl ml-24 sm:text-9xl sm:ml-40 font-bold mb-4 mt-[-10px] sm:mt-[-40px] about-heading"
-        ref={(el) => { headingRef.current[1] = el; }}
+        ref={(el) => {
+            headingRef.current[1] = el;
+        }}
         >
         we do
         </h2>
@@ -88,13 +92,17 @@ return (
         <div className="w-full sm:w-2/3 text-left sm:text-left">
         <p
             className="text-xl sm:text-4xl sm:mt-64 sm:ml-32 font-semibold max-w-4xl mb-10 about-text"
-            ref={(el) => { textRef.current[0] = el; }}
+            ref={(el) => {
+            textRef.current[0] = el;
+            }}
         >
-            Welcome to CAM—the first-of-its-kind marketplace bringing the soul of Africa to the world. Discover a curated collection where every piece, from stylish wearables and contemporary fashion to artisanal tools and unique home accents, is a testament to Africa’s rich heritage and masterful craftsmanship.
+            Welcome to SankaMarketplace—the first-of-its-kind marketplace bringing the soul of Africa to the world. Discover a curated collection where every piece, from stylish wearables and contemporary fashion to artisanal tools and unique home accents, is a testament to Africa’s rich heritage and masterful craftsmanship.
         </p>
         <p
             className="text-xl sm:text-4xl font-semibold sm:ml-32 max-w-4xl text-green-800 about-text"
-            ref={(el) => { textRef.current[1] = el; }}
+            ref={(el) => {
+            textRef.current[1] = el;
+            }}
         >
             With each purchase, you’re not only enjoying high-quality craftsmanship but also supporting fair trade practices that empower local communities. Explore our curated selection and experience the authentic creativity and passion that goes into every piece.
         </p>
