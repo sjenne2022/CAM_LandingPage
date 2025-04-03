@@ -83,7 +83,7 @@ return (
             textRef.current[0] = el;
             }}
         >
-            How is SankaMarketplace fair trade? Well, at SankaMarketplace we work directly with African artisans, ensuring they&apos;re paid fairly and work in safe, supportive environments.
+            How is Sanka Marketplace fair trade? Well, at Sanka Marketplace we work directly with African artisans, ensuring they&apos;re paid fairly and work in safe, supportive environments.
         </p>
         <p
             className="font-semibold sm:ml-14 text-left text-xl sm:text-3xl max-w-3xl mx-auto sm:mx-0 text-red-700 fairtrade-text"
@@ -91,7 +91,7 @@ return (
             textRef.current[1] = el;
             }}
         >
-            When you choose SankaMarketplace, you&apos;re supporting African artisans and strengthening their communities.
+            When you choose Sanka Marketplace, you&apos;re supporting African artisans and strengthening their communities.
         </p>
         <button className="bg-green-800 sm:ml-14 text-white py-3 sm:py-4 sm:px-7 sm:rounded-full px-6 rounded-3xl text-lg sm:text-xl hover:bg-green-600 active:bg-green-950 mt-8 sm:mt-16">
             Get the latest updates now

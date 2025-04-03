@@ -96,7 +96,7 @@ return (
             textRef.current[0] = el;
             }}
         >
-            Welcome to SankaMarketplace—the first-of-its-kind marketplace bringing the soul of Africa to the world. Discover a curated collection where every piece, from stylish wearables and contemporary fashion to artisanal tools and unique home accents, is a testament to Africa’s rich heritage and masterful craftsmanship.
+            Welcome to Sanka Marketplace—the first-of-its-kind marketplace bringing the soul of Africa to the world. Discover a curated collection where every piece, from stylish wearables and contemporary fashion to artisanal tools and unique home accents, is a testament to Africa’s rich heritage and masterful craftsmanship.
         </p>
         <p
             className="text-xl sm:text-4xl font-semibold sm:ml-32 max-w-4xl text-green-800 about-text"
