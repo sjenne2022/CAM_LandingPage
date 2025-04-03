@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import ErrorBoundary from "@/components/ErrorBoundary"; // or the correct relative path
 const SubscribeModal = dynamic(() => import("./SubscribeModal"), { ssr: false });
 
 
@@ -166,10 +167,9 @@ return (
         className="rounded-lg w-full sm:w-auto sm:max-w-lg lg:max-w-3xl h-auto object-contain mb-[-48px]"
         />
     </button>
-    <SubscribeModal
-        modalState={modalState}
-        setModalState={setModalState}
-    />
+    <ErrorBoundary fallback={<div>Failed to load modal.</div>}>
+        <SubscribeModal modalState={modalState} setModalState={setModalState} />
+    </ErrorBoundary>
     </section>
 );
 }
