@@ -1,21 +1,17 @@
 import { google } from 'googleapis';
-import { encrypt } from './crypto';
 
-// Define necessary scopes and constants
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const SHEET_RANGE = 'Sheet1!A1:H1';
 
-// Exportable Google Auth Client (to use in API routes like route.ts)
 export async function getGoogleAuthClient() {
 const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY ?? '{}';
 const parsed = JSON.parse(raw);
 parsed.private_key = parsed.private_key.replace(/\\n/g, '\n');
-const credentials = parsed;
 
 const client = new google.auth.JWT({
-    email: credentials.client_email,
-    key: credentials.private_key,
+    email: parsed.client_email,
+    key: parsed.private_key,
     scopes: SCOPES,
 });
 
@@ -23,7 +19,6 @@ await client.authorize();
 return client;
 }
 
-// Append row to sheet (form submission handler)
 export async function appendRowToSheet(data: {
 email: string;
 q1: string;
@@ -44,9 +39,23 @@ const timestamp = new Date()
     })
     .replace(',', '');
 
+let encryptedEmail = '';
+try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/encrypt`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: data.email }),
+    });
+    const result = await response.json();
+    encryptedEmail = result.encrypted;
+} catch (encryptionError) {
+    console.error('❌ Encryption API Error:', encryptionError);
+    return false;
+}
+
 const row = [
     timestamp,
-    encrypt(data.email), // 🔐 ONLY this field is encrypted
+    encryptedEmail,
     data.q1,
     data.productInterests.join(', '),
     data.q3,
@@ -74,7 +83,6 @@ try {
     console.error('❌ Google Sheets API Error:', apiError);
     return false;
     }
-
 } catch (authError) {
     console.error('❌ Google Auth Client Error:', authError);
     return false;
