@@ -12,12 +12,11 @@ const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY ?? '{}';
 const parsed = JSON.parse(raw);
 parsed.private_key = parsed.private_key.replace(/\\n/g, '\n');
 const credentials = parsed;
-    
 
 const client = new google.auth.JWT({
-email: credentials.client_email,
-key: credentials.private_key,
-scopes: SCOPES,
+    email: credentials.client_email,
+    key: credentials.private_key,
+    scopes: SCOPES,
 });
 
 await client.authorize();
@@ -34,19 +33,16 @@ q4: string[];
 q5: string;
 q6: string[];
 }) {
-
 const timestamp = new Date()
-.toLocaleString('en-US', {
-month: '2-digit',
-day: '2-digit',
-year: 'numeric',
-hour: '2-digit',
-minute: '2-digit',
-hour12: true,
-})
-.replace(',', '');
-
-
+    .toLocaleString('en-US', {
+    month: '2-digit',
+    day: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+    })
+    .replace(',', '');
 
 const row = [
     timestamp,
@@ -59,24 +55,28 @@ const row = [
     data.q6.join(', '),
 ];
 
-
 try {
-const auth = await getGoogleAuthClient();
+    const auth = await getGoogleAuthClient();
+    const sheets = google.sheets({ version: 'v4', auth });
 
-const sheets = google.sheets({ version: 'v4', auth });
+    try {
+    const response = await sheets.spreadsheets.values.append({
+        spreadsheetId: SHEET_ID,
+        range: SHEET_RANGE,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+        values: [row],
+        },
+    });
 
-const response = await sheets.spreadsheets.values.append({
-    spreadsheetId: SHEET_ID,
-    range: SHEET_RANGE,
-    valueInputOption: 'USER_ENTERED',
-    requestBody: {
-    values: [row],
-    },
-});
+    return response.status === 200 || response.status === 201;
+    } catch (apiError) {
+    console.error('❌ Google Sheets API Error:', apiError);
+    return false;
+    }
 
-return response.status === 200 || response.status === 201;
-} catch (error: unknown) {
-    console.error('❌ Full Google Sheets API Error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
+} catch (authError) {
+    console.error('❌ Google Auth Client Error:', authError);
     return false;
 }
 }
