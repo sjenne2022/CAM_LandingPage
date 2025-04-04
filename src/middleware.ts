@@ -1,32 +1,23 @@
-// src/middleware.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-// Custom type to extend NextRequest with geo data
-type GeoRequest = NextRequest & {
-geo?: {
-    country?: string;
-    region?: string;
-    city?: string;
-};
-};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function middleware(_request: NextRequest) {
+const response = NextResponse.next();
 
-export function middleware(request: GeoRequest) {
-// Safely access the geo data
-const country = request.geo?.country ?? "US"; // fallback to 'US' if undefined
-const region = request.geo?.region ?? "unknown-region";
+// Security Headers
+response.headers.set("X-Content-Type-Options", "nosniff");
+response.headers.set("X-Frame-Options", "DENY");
+response.headers.set("X-XSS-Protection", "1; mode=block");
+response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+response.headers.set("Permissions-Policy", "geolocation=(), microphone=()");
+response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
 
-console.log(`Visitor from: ${country}, Region: ${region}`);
+// Basic CSP — tighten this up for production as needed
+response.headers.set(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self'; object-src 'none';"
+);
 
-// You can use this to route, redirect, or apply logic
-// Example: redirect EU users to a regional page
-// if (country === "FR") {
-//   return NextResponse.redirect(new URL("/fr", request.url));
-// }
-
-return NextResponse.next();
+return response;
 }
-
-// Match all routes for middleware execution
-export const config = {
-matcher: ["/((?!_next|favicon.ico|robots.txt|sitemap.xml).*)"],
-};
